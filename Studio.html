@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Creator Code Studio Pro | All-In-One Suite</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Architects+Daughter&family=Caveat:wght@400;700&family=Dancing+Script:wght@500;700&family=Delicious+Handrawn&family=Great+Vibes&family=Indie+Flower&family=Kalam:wght@400;700&family=Nanum+Pen+Script&family=Pacifico&family=Patrick+Hand&family=Sacramento&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #f8f6f0;
+      --sidebar-bg: #ffffff;
+      --card-bg: #ffffff;
+      --gold-100: #fef8e7;
+      --gold-200: #fde8b5;
+      --gold-300: #fbd380;
+      --gold-500: #d97706;
+      --gold-600: #b45309;
+      --gold-700: #92400e;
+      --gold-gradient: linear-gradient(135deg, #bf8415 0%, #e6be65 50%, #b87b10 100%);
+      --gold-soft-grad: linear-gradient(145deg, #ffffff 0%, #fefbf3 50%, #fef6e2 100%);
+      --gold-border: #eedcb1;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --text-gold: #b45309;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-subtle: 0 4px 20px rgba(180, 83, 9, 0.05);
+      --shadow-hover: 0 10px 30px rgba(180, 83, 9, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    /* =========================================================
+       SIDEBAR & MODERN DASHBOARD NAVIGATION
+       ========================================================= */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      border-right: 1.5px solid var(--gold-border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 4px 0 25px rgba(217, 119, 6, 0.04);
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.25);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-wm-card {
+      margin: 16px;
+      padding: 14px;
+      background: var(--gold-100);
+      border: 1.5px dashed var(--gold-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .wm-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wm-input-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--gold-border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--gold-700);
+      outline: none;
+    }
+
+    .sidebar-menu {
+      flex: 1;
+      padding: 10px 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 10px 6px 10px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-link i {
+      font-size: 1rem;
+      width: 20px;
+      color: var(--gold-500);
+    }
+
+    .nav-link:hover {
+      background: var(--gold-100);
+      color: var(--gold-700);
+    }
+
+    .nav-link.active {
+      background: var(--gold-gradient);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(180, 83, 9, 0.22);
+    }
+
+    .nav-link.active i {
+      color: #ffffff;
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1.5px solid var(--gold-border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Main Shell */
+    .app-main {
+      flex: 1;
+      margin-left: 280px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      transition: margin 0.3s;
+    }
+
+    /* Top App Bar */
+    .top-appbar {
+      height: 68px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid var(--gold-border);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .menu-toggle-btn {
+      display: none;
+      background: var(--gold-100);
+      border: 1px solid var(--gold-border);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      color: var(--gold-700);
+      font-size: 1.1rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-breadcrumb {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-title-active {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold-700);
+    }
+
+    .page-subtitle-active {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-pill-badge {
+      background: var(--gold-soft-grad);
+      border: 1.5px solid var(--gold-border);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.08);
+    }
+
+    /* Content Area */
+    .page-workspace {
+      padding: 24px;
+      max-width: 1600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeInPage 0.25s ease forwards;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Layout Grids */
+    .view-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .view-grid {
+        grid-template-columns: 460px 1fr;
+        align-items: start;
+      }
+    }
+
+    /* Cards */
+    .panel-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold-100);
+      padding-bottom: 12px;
+    }
+
+    .panel-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: #fffdf9;
+      border: 1.5px solid var(--gold-border);
+      color: var(--text-dark);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold-500);
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+    }
+
+    textarea {
+      height: 95px;
+      font-family: 'Consolas', monospace;
+      font-size: 13px;
+      resize: vertical;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button.btn-primary {
+      flex: 1;
+      min-width: 130px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background: var(--gold-gradient);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.2);
+      transition: all 0.2s;
+    }
+
+    button.btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(180, 83, 9, 0.3);
+    }
+
+    button.btn-secondary {
+      flex: 1;
+      min-width: 130px;
+      padding: 12px 18px;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--gold-700);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    button.btn-secondary:hover {
+      background: var(--gold-100);
+    }
+
+    button.btn-dark {
+      flex: 1;
+      min-width: 130px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    button.btn-dark:hover {
+      background: #1e293b;
+    }
+
+    /* =========================================================
+       SHOWCASE STAGING & ZERO-CROP / FULL CONTENT DISPLAY
+       ========================================================= */
+    .preview-stage-container {
+      background: #fbf8f0;
+      border: 1.5px dashed var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      min-height: 400px;
+    }
+
+    .ratio-stage-box {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: max-width 0.3s ease;
+    }
+
+    .stage-ratio-16-9 { max-width: 920px; }
+    .stage-ratio-9-16 { max-width: 440px; }
+    .stage-ratio-4-5  { max-width: 520px; }
+    .stage-ratio-1-1  { max-width: 580px; }
+
+    .royal-export-banner {
+      width: 100%;
+      height: auto !important;
+      min-height: auto !important;
+      background: linear-gradient(145deg, #fffcf5 0%, #fef4db 40%, #fde4a7 80%, #f59e0b 100%);
+      padding: 26px 20px;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(180, 83, 9, 0.16);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      box-sizing: border-box;
+      overflow: visible !important;
+    }
+
+    .pro-watermark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 5px 12px;
+      border-radius: 30px;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      align-self: flex-end;
+      z-index: 10;
+    }
+
+    .pro-watermark i {
+      color: #10b981;
+    }
+
+    .mac-window-card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(180, 83, 9, 0.12), 0 2px 10px rgba(0, 0, 0, 0.04);
+      border: 1.5px solid #fef3c7;
+      overflow: visible;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mac-window-top {
+      background: #faf7f0;
+      border-bottom: 1.5px solid #f1e6d0;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mac-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .mac-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mac-window-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      letter-spacing: 0.02em;
+    }
+
+    .mac-window-content {
+      background: #0f172a;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+    }
+
+    /* Split Screen Specifics */
+    .split-editor-tabs, .pdf-editor-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--gold-100);
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .split-tab-btn, .pdf-tab-btn {
+      flex: 1;
+      padding: 6px;
+      border: none;
+      background: transparent;
+      font-weight: 700;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .split-tab-btn.active, .pdf-tab-btn.active {
+      background: #ffffff;
+      color: var(--gold-700);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .split-dual-view {
+      display: grid;
+      width: 100%;
+      gap: 16px;
+    }
+
+    .split-dual-landscape {
+      grid-template-columns: 1.15fr 0.85fr !important;
+    }
+
+    .split-dual-stacked {
+      grid-template-columns: 1fr !important;
+    }
+
+    .split-code-side {
+      background: #0b0f19;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+      padding: 14px;
+      font-family: 'Consolas', monospace;
+      font-size: 11.5px;
+      color: #e2e8f0;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      line-height: 1.5;
+    }
+
+    .split-render-side {
+      background: #0b0f19;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      height: auto !important;
+    }
+
+    /* Diff Cards */
+    .diff-grid-layout {
+      display: grid;
+      width: 100%;
+      gap: 14px;
+    }
+
+    .diff-grid-landscape {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    .diff-grid-stacked {
+      grid-template-columns: 1fr !important;
+    }
+
+    .diff-pane {
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'Consolas', monospace;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    .diff-bad {
+      background: #3b0707;
+      border: 1.5px solid #ef4444;
+      color: #fca5a5;
+    }
+
+    .diff-good {
+      background: #064e3b;
+      border: 1.5px solid #10b981;
+      color: #a7f3d0;
+    }
+
+    .diff-header-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    /* Quiz Card UI */
+    .quiz-poster-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      border: 2px solid var(--gold-border);
+      box-shadow: 0 10px 30px rgba(180, 83, 9, 0.08);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .quiz-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--gold-700);
+      background: var(--gold-100);
+      padding: 4px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .quiz-question-text {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .quiz-options-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quiz-grid-landscape {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    .quiz-grid-stacked {
+      grid-template-columns: 1fr !important;
+    }
+
+    .quiz-option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .opt-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--gold-100);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-700);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .quiz-option-item.correct-answer {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
+      font-weight: 800;
+    }
+
+    .quiz-option-item.correct-answer .opt-letter {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #059669;
+    }
+
+    /* CSS Diagram Box */
+    .css-diagram-display {
+      width: 100%;
+      background: #0f172a;
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 220px;
+    }
+
+    .css-rule-tag {
+      font-family: 'Consolas', monospace;
+      font-size: 13px;
+      color: #38bdf8;
+      background: #1e293b;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      border-left: 3px solid #38bdf8;
+      word-break: break-all;
+    }
+
+    .css-visual-sandbox {
+      width: 100%;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    
+    
+    /* =========================================================
+       PAGE 8: CLASSIC CODE PDF PRINTABLE STYLES (ZERO-SIDE-CUT & PAGE-BREAK IMMUNE)
+       ========================================================= */
+    #pdfPrintDocument {
+      width: 100%;
+      max-width: 680px;
+      box-sizing: border-box;
+      background: #ffffff;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(180, 83, 9, 0.12);
+      overflow: visible !important;
+      margin: 0 auto;
+    }
+
+    .pdf-header-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      padding: 26px 22px;
+      border-bottom: 4px solid #f59e0b;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    .pdf-hero-badge {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid #f59e0b;
+      color: #f59e0b;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .pdf-hero-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .pdf-hero-subtitle {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      font-weight: 600;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .pdf-brand-tag {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #f59e0b;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .pdf-body-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: #faf7f2;
+      box-sizing: border-box;
+    }
+
+    .pdf-code-section {
+      background: #ffffff;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      margin-bottom: 4px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pdf-section-titlebar {
+      background: #fdf6e7;
+      border-bottom: 1px solid var(--gold-border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: var(--gold-700);
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pdf-code-block {
+      background: #0f172a;
+      padding: 16px;
+      color: #f8fafc;
+      font-family: 'Consolas', monospace;
+      font-size: 11.5px;
+      line-height: 1.6;
+      white-space: pre-wrap !important;
+      word-break: break-all !important;
+      overflow-wrap: anywhere !important;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .pdf-footer-bar {
+      background: #ffffff;
+      border-top: 1.5px solid var(--gold-border);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Responsive Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+    }
+
+    @media (max-width: 992px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-overlay.active {
+        display: block;
+      }
+      .app-main {
+        margin-left: 0;
+      }
+      .menu-toggle-btn {
+        display: flex;
+      }
+      .page-workspace {
+        padding: 16px 12px;
+      }
+    }
+  
+    /* =========================================================
+       PAGE 9: REAL NOTEBOOK HANDWRITTEN PAPER STYLES (LOCKED A4 DIMENSIONS)
+       ========================================================= */
+    .notebook-viewport-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+      background: #1f2937;
+      border-radius: 16px;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    /* Fixed A4 Page Container (794px x 1123px) - Text chahe kam ho ya zyada, size never changes */
+    .notebook-paper-container {
+      width: 794px !important;
+      min-width: 794px !important;
+      max-width: 794px !important;
+      height: 1123px !important;
+      min-height: 1123px !important;
+      max-height: 1123px !important;
+      margin: 0 auto;
+      background: #fdfbf7;
+      border-radius: 4px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden !important;
+      border: 1px solid #e2ded5;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    /* Notebook Top Header (Date & Page No.) */
+    .notebook-top-header {
+      height: 85px;
+      border-bottom: 2.5px solid #ef4444; /* Permanent red top boundary */
+      padding: 14px 28px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 18px;
+      background: #fdfbf7;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .notebook-meta-pill {
+      border: 1.5px solid #ef4444;
+      border-radius: 8px;
+      padding: 5px 14px;
+      font-size: 0.95rem;
+      color: #991b1b;
+      font-weight: 700;
+      background: rgba(254, 242, 242, 0.7);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    /* Ruled Writing Area - Exactly 1038px high with continuous 34px lines from top to bottom */
+    .notebook-body {
+      position: relative;
+      height: 1038px !important;
+      min-height: 1038px !important;
+      max-height: 1038px !important;
+      padding-top: 0;
+      padding-bottom: 20px;
+      background-image: repeating-linear-gradient(to bottom, #fdfcf7 0px, #fdfcf7 33px, #cbd5e1 33px, #cbd5e1 34px);
+      background-size: 100% 34px;
+      background-position: 0 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Vertical Red Margin Double Lines on Left */
+    .notebook-margin-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 78px;
+      width: 2.5px;
+      background: #ef4444;
+      z-index: 2;
+    }
+
+    .notebook-margin-line-2 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 83px;
+      width: 1px;
+      background: rgba(239, 68, 68, 0.45);
+      z-index: 2;
+    }
+
+    /* Content flow inside notebook */
+    .notebook-text-content {
+      position: relative;
+      z-index: 3;
+      margin-left: 100px;
+      margin-right: 32px;
+      line-height: 34px;
+      font-size: 21px;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .notebook-line {
+      min-height: 34px;
+      line-height: 34px;
+      margin: 0;
+      padding: 0;
+      transition: color 0.15s ease;
+    }
+
+    /* Realistic Ink Colors */
+    .ink-black {
+      color: #09090b !important; /* Dark Black Gel Ink */
+      text-shadow: 0 0 1px rgba(9, 9, 11, 0.25);
+    }
+
+    .ink-blue {
+      color: #1d4ed8 !important; /* Classic Blue Ballpoint / Fountain Ink */
+      text-shadow: 0 0 1px rgba(29, 78, 216, 0.2);
+    }
+
+    .ink-red {
+      color: #dc2626 !important; /* Teacher / Heading Red Ink */
+      font-weight: 700;
+      text-shadow: 0 0 1px rgba(220, 38, 38, 0.25);
+    }
+
+    .chip-btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .format-chip-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--gold-border);
+      background: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .format-chip-btn:hover {
+      background: var(--gold-100);
+    }
+</style>
+</head>
+<body>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+
+  <!-- =========================================================
+       SIDEBAR NAVIGATION
+       ========================================================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-badge">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <div>
+        <div class="brand-title">Creator Studio</div>
+        <div class="brand-subtitle">Pro Content Suite</div>
+      </div>
+    </div>
+
+    <div class="sidebar-wm-card">
+      <div class="wm-label"><i class="fa-solid fa-stamp"></i> Brand Watermark</div>
+      <input type="text" id="globalBrandHandle" class="wm-input-box" value="@CodeWithPiyush" oninput="syncAllWatermarks(this.value)">
+    </div>
+
+    <nav class="sidebar-menu">
+      <div class="menu-label">Main Tools</div>
+      <a class="nav-link active" onclick="navigateTo('page-slides', this, 'Code Slides Generator', 'Multi-part code carousel cards')">
+        <i class="fa-solid fa-code"></i> Code To Slides
+      </a>
+      <a class="nav-link" onclick="navigateTo('page-state', this, 'Live State Snapshot', 'Action-by-action movement capture')">
+        <i class="fa-solid fa-camera"></i> Live State Capture
+      </a>
+      <a class="nav-link" onclick="navigateTo('page-video', this, 'HD Video Recorder', '8 Mbps smooth canvas recording')">
+        <i class="fa-solid fa-video"></i> HD Video Recorder
+      </a>
+
+      <div class="menu-label">Engagement Generators</div>
+      <a class="nav-link" onclick="navigateTo('page-split', this, 'Split-Screen Mode', 'Code on Left + Live Render on Right')">
+        <i class="fa-solid fa-columns"></i> Split-Screen (Code+Live)
+      </a>
+      <a class="nav-link" onclick="navigateTo('page-diff', this, 'Wrong ❌ vs Right ✅', 'Code comparison & tips card')">
+        <i class="fa-solid fa-code-compare"></i> Wrong ❌ vs Right ✅
+      </a>
+      <a class="nav-link" onclick="navigateTo('page-quiz', this, 'Quiz & MCQ Card Maker', 'Community polls & answer key cards')">
+        <i class="fa-solid fa-circle-question"></i> Quiz & MCQ Maker
+      </a>
+      <a class="nav-link" onclick="navigateTo('page-css', this, 'CSS Visual Diagrams', 'Custom code & property visualizer')">
+        <i class="fa-solid fa-layer-group"></i> CSS Visual Diagrams
+      </a>
+
+            <div class="menu-label">Handwritten Creative</div>
+      <a class="nav-link" onclick="navigateTo('page-notebook', this, 'Real Notebook Notes', 'Handwritten ink notebook with question & answer colors')">
+        <i class="fa-solid fa-pen-nib" style="color:#d97706;"></i> Real Notebook Notes
+      </a>
+
+<div class="menu-label">Document Publishing</div>
+      <a class="nav-link" onclick="navigateTo('page-pdf', this, 'Code To Classic PDF', 'HTML, CSS, JS & Full Project PDF eBook')">
+        <i class="fa-solid fa-file-pdf" style="color:#ef4444;"></i> Code To Classic PDF
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      Golden & White Theme • Full Content Pro
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       MAIN APP SHELL
+       ========================================================= -->
+  <div class="app-main">
+    <header class="top-appbar">
+      <div class="top-left">
+        <button class="menu-toggle-btn" onclick="toggleSidebar(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="page-breadcrumb">
+          <span class="page-title-active" id="barPageTitle">Code Slides Generator</span>
+          <span class="page-subtitle-active" id="barPageSubtitle">Multi-part code carousel cards</span>
+        </div>
+      </div>
+      <div class="top-right">
+        <div class="brand-pill-badge">
+          <i class="fa-solid fa-circle-check" style="color:#10b981;"></i>
+          <span class="wm-active-tag">@CodeWithPiyush</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-workspace">
+
+      <!-- =========================================================
+           PAGE 1: CODE SLIDES (SPLIT PARTS)
+           ========================================================= -->
+      <section id="page-slides" class="page-section active">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-sliders"></i> Slides Configuration</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">File / Header Name</label>
+              <input type="text" id="p1FileName" value="glass-effect.css">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Social Aspect Ratio</label>
+              <select id="p1Ratio" onchange="generateSlidesP1()">
+                <option value="shorts">YouTube Shorts / Reels (9:16)</option>
+                <option value="landscape">YouTube Landscape (16:9)</option>
+                <option value="insta_portrait">Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Source Code</label>
+              <textarea id="p1Code" style="height: 180px;">/* Royal Glassmorphic Card */
+.royal-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid #ebd9b0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 15px 35px rgba(217, 119, 6, 0.12);
+}
+
+.gold-title {
+  color: #b45309;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}</textarea>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="generateSlidesP1()"><i class="fa-solid fa-bolt"></i> Generate Slides</button>
+              <button class="btn-dark" onclick="downloadAllSlidesP1()"><i class="fa-solid fa-download"></i> Download All</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-images"></i> Generated Carousel Slides</span>
+            </div>
+            <div id="p1Gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 2: LIVE STATE CAPTURE
+           ========================================================= -->
+      <section id="page-state" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-code"></i> Project Code & Stage Ratio</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Frame Aspect Ratio</label>
+              <select id="p2Ratio" onchange="updateStageRatio('p2StageBox', this.value)">
+                <option value="landscape">YouTube Landscape (16:9)</option>
+                <option value="shorts" selected>YouTube Shorts / Reels (9:16)</option>
+                <option value="insta_portrait">Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">HTML</label>
+              <textarea id="p2Html"><div class="slider-box">
+  <div class="slide-card active" style="background:#ef4444;">1. Red View</div>
+  <div class="slide-card" style="background:#2563eb;">2. Blue View</div>
+  <div class="slide-card" style="background:#10b981;">3. Green View</div>
+</div>
+<div class="slider-ctrls">
+  <button onclick="prevSlideP2()">Prev</button>
+  <button onclick="nextSlideP2()">Next</button>
+</div></textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">CSS</label>
+              <textarea id="p2Css">.slider-box { width: 240px; height: 130px; border-radius: 14px; overflow: hidden; border: 2px solid #f59e0b; position: relative; box-shadow: 0 0 20px rgba(245, 158, 11, 0.35); }
+.slide-card { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 1.1rem; }
+.slide-card.active { display: flex; }
+.slider-ctrls { margin-top: 12px; display: flex; gap: 8px; justify-content: center; }
+.slider-ctrls button { padding: 6px 14px; background: #f59e0b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: #0f172a; }</textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">JavaScript</label>
+              <textarea id="p2Js">let cur = 0;
+window.nextSlideP2 = function() {
+  const slides = document.querySelectorAll('#p2TargetContainer .slide-card');
+  if(!slides.length) return;
+  slides[cur].classList.remove('active');
+  cur = (cur + 1) % slides.length;
+  slides[cur].classList.add('active');
+};
+window.prevSlideP2 = function() {
+  const slides = document.querySelectorAll('#p2TargetContainer .slide-card');
+  if(!slides.length) return;
+  slides[cur].classList.remove('active');
+  cur = (cur - 1 + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+};</textarea>
+            </div>
+            <div class="btn-row">
+              <button class="btn-dark" onclick="mountP2Code()"><i class="fa-solid fa-play"></i> Reload Sandbox</button>
+              <button class="btn-primary" onclick="captureP2State()"><i class="fa-solid fa-camera"></i> Capture This State</button>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-heading"><i class="fa-solid fa-display"></i> Interactive Live Stage</span>
+              </div>
+              <div class="preview-stage-container">
+                <div class="ratio-stage-box stage-ratio-9-16" id="p2StageBox">
+                  <div class="royal-export-banner" id="p2ExportFrame">
+                    <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                    <div class="mac-window-card">
+                      <div class="mac-window-top">
+                        <div class="mac-dots">
+                          <div class="mac-dot" style="background:#ef4444;"></div>
+                          <div class="mac-dot" style="background:#f59e0b;"></div>
+                          <div class="mac-dot" style="background:#10b981;"></div>
+                        </div>
+                        <span class="mac-window-title">Live Interactive Component</span>
+                        <div style="width:25px;"></div>
+                      </div>
+                      <div class="mac-window-content">
+                        <div id="p2TargetContainer"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-heading"><i class="fa-solid fa-photo-film"></i> Captured Step Snapshots</span>
+                <button class="btn-secondary" style="padding:4px 10px; font-size:0.75rem; flex:none; min-width:auto;" onclick="clearP2Gallery()">Clear All</button>
+              </div>
+              <div id="p2Gallery" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:14px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 3: HD VIDEO RECORDER
+           ========================================================= -->
+      <section id="page-video" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-film"></i> Video Recording Settings</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Video Aspect Ratio</label>
+              <select id="p3Ratio" onchange="updateStageRatio('p3StageBox', this.value)">
+                <option value="shorts" selected>YouTube Shorts / Reels (9:16)</option>
+                <option value="landscape">YouTube Landscape (16:9)</option>
+                <option value="insta_portrait">Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">HTML</label>
+              <textarea id="p3Html"><div class="anim-ring-wrap">
+  <div class="neon-spin-ring"></div>
+  <div class="anim-center-card">
+    <div class="icon-pulse">⚡</div>
+    <span id="p3SpeedTag">Speed 1X</span>
+  </div>
+</div>
+<div style="text-align:center; margin-top:14px;">
+  <button class="btn-anim-boost" onclick="toggleBoostP3()">Boost Animation</button>
+</div></textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">CSS</label>
+              <textarea id="p3Css">.anim-ring-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
+.neon-spin-ring { position: absolute; width: 190px; height: 190px; border-radius: 50%; border: 4px dashed #f59e0b; box-shadow: 0 0 25px rgba(245, 158, 11, 0.45); animation: spinR 5s linear infinite; }
+@keyframes spinR { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.anim-center-card { width: 130px; height: 130px; background: #1e1b4b; border: 2px solid #f59e0b; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #fff; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 2; }
+.icon-pulse { font-size: 2rem; animation: pulseI 1s infinite alternate; }
+@keyframes pulseI { 0% { transform: scale(0.9); } 100% { transform: scale(1.2); } }
+.btn-anim-boost { padding: 8px 16px; background: #f59e0b; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #090d16; }</textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">JavaScript</label>
+              <textarea id="p3Js">let turbo = false;
+window.toggleBoostP3 = function() {
+  turbo = !turbo;
+  const ring = document.querySelector('#p3TargetContainer .neon-spin-ring');
+  const tag = document.querySelector('#p3TargetContainer #p3SpeedTag');
+  if(ring && tag) {
+    ring.style.animationDuration = turbo ? '1.2s' : '5s';
+    ring.style.borderColor = turbo ? '#38bdf8' : '#f59e0b';
+    tag.innerText = turbo ? 'Turbo Boost ⚡' : 'Speed 1X';
+  }
+};</textarea>
+            </div>
+            <button class="btn-dark" onclick="mountP3Code()"><i class="fa-solid fa-rotate"></i> Apply Animation Code</button>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:20px;">
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-heading"><i class="fa-solid fa-clapperboard"></i> Live Output Screen</span>
+                <span id="p3RecStatus" style="display:none; color:#ef4444; font-weight:800; font-size:0.85rem; align-items:center; gap:6px;">
+                  <span style="width:8px; height:8px; border-radius:50%; background:#ef4444; display:inline-block; animation:blink 1s infinite;"></span> Recording HD...
+                </span>
+              </div>
+              <div class="preview-stage-container">
+                <div class="ratio-stage-box stage-ratio-9-16" id="p3StageBox">
+                  <div class="royal-export-banner" id="p3RenderFrame">
+                    <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                    <div class="mac-window-card">
+                      <div class="mac-window-top">
+                        <div class="mac-dots">
+                          <div class="mac-dot" style="background:#ef4444;"></div>
+                          <div class="mac-dot" style="background:#f59e0b;"></div>
+                          <div class="mac-dot" style="background:#10b981;"></div>
+                        </div>
+                        <span class="mac-window-title">High Bitrate Video Engine</span>
+                        <div style="width:25px;"></div>
+                      </div>
+                      <div class="mac-window-content">
+                        <div id="p3TargetContainer"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-row" style="margin-top:16px;">
+                <button class="btn-primary" id="btnStartVideoP3" onclick="startVideoRecordP3()"><i class="fa-solid fa-circle-dot"></i> Start 8 Mbps HD Recording</button>
+                <button class="btn-dark" id="btnStopVideoP3" style="display:none;" onclick="stopVideoRecordP3()"><i class="fa-solid fa-square"></i> Stop & Render Video</button>
+              </div>
+            </div>
+
+            <!-- Video Download Card -->
+            <div class="panel-card" id="p3VideoDownloadCard" style="display:none;">
+              <div class="panel-header">
+                <span class="panel-heading"><i class="fa-solid fa-video"></i> Video Preview & Download</span>
+              </div>
+              <video id="p3VideoPlayer" controls autoplay loop playsinline style="width:100%; border-radius:12px; background:#000;"></video>
+              <button class="btn-primary" id="p3DownloadBtn" style="margin-top:10px;"><i class="fa-solid fa-cloud-arrow-down"></i> Download Video (.webm)</button>
+            </div>
+
+            <canvas id="p3EngineCanvas" style="display:none;"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 4: SPLIT-SCREEN (CODE + LIVE RENDER)
+           ========================================================= -->
+      <section id="page-split" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-columns"></i> Split Setup (Separate Editors)</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Project Title</label>
+              <input type="text" id="p4Title" value="Glowing Cyber Card Button">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Frame Aspect Ratio</label>
+              <select id="p4Ratio" onchange="updateStageRatio('p4StageBox', this.value); updateSplitRatioLayout(this.value)">
+                <option value="landscape" selected>YouTube Landscape (16:9)</option>
+                <option value="shorts">YouTube Shorts / Reels (9:16)</option>
+                <option value="insta_portrait">Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+              </select>
+            </div>
+
+            <div class="split-editor-tabs">
+              <button class="split-tab-btn active" onclick="switchSplitEditor('html', this)">HTML</button>
+              <button class="split-tab-btn" onclick="switchSplitEditor('css', this)">CSS</button>
+              <button class="split-tab-btn" onclick="switchSplitEditor('js', this)">JS</button>
+            </div>
+
+            <div id="splitInputHtmlBox">
+              <label class="input-label">HTML Code</label>
+              <textarea id="p4Html"><button class="cyber-btn" onclick="sayHello()">
+  <span>Explore UI</span>
+</button></textarea>
+            </div>
+
+            <div id="splitInputCssBox" style="display:none;">
+              <label class="input-label">CSS Code</label>
+              <textarea id="p4Css">.cyber-btn {
+  padding: 14px 28px;
+  background: #0f172a;
+  border: 2px solid #f59e0b;
+  color: #f59e0b;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s;
+}
+.cyber-btn:hover {
+  background: #f59e0b;
+  color: #0f172a;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.9);
+}</textarea>
+            </div>
+
+            <div id="splitInputJsBox" style="display:none;">
+              <label class="input-label">JavaScript Code</label>
+              <textarea id="p4Js">window.sayHello = function() {
+  alert('Clicked Cyber Button!');
+};</textarea>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-dark" onclick="renderSplitP4()"><i class="fa-solid fa-play"></i> Update Preview</button>
+              <button class="btn-primary" onclick="captureSplitP4()"><i class="fa-solid fa-camera"></i> Download Split Poster</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-chalkboard"></i> Showcase Poster Preview</span>
+            </div>
+            <div class="preview-stage-container">
+              <div class="ratio-stage-box stage-ratio-16-9" id="p4StageBox">
+                <div class="royal-export-banner" id="p4ExportFrame">
+                  <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                  <div class="mac-window-card">
+                    <div class="mac-window-top">
+                      <div class="mac-dots">
+                        <div class="mac-dot" style="background:#ef4444;"></div>
+                        <div class="mac-dot" style="background:#f59e0b;"></div>
+                        <div class="mac-dot" style="background:#10b981;"></div>
+                      </div>
+                      <span class="mac-window-title" id="p4TitleDisplay">Glowing Cyber Card Button</span>
+                      <div style="width:25px;"></div>
+                    </div>
+                    <div style="padding:16px; background:#0b0f19;">
+                      <div class="split-dual-view split-dual-landscape" id="p4DualView">
+                        <div class="split-code-side">
+                          <div style="font-weight:800; color:#f59e0b; margin-bottom:6px; border-bottom:1px solid #1e293b; padding-bottom:4px;">💻 SOURCE CODE</div>
+                          <pre id="p4PreView" style="margin:0; white-space:pre-wrap;"></pre>
+                        </div>
+                        <div class="split-render-side">
+                          <div style="font-weight:800; color:#f59e0b; margin-bottom:12px; align-self:flex-start; border-bottom:1px solid #1e293b; padding-bottom:4px; width:100%;">⚡ LIVE EXECUTION</div>
+                          <div id="p4LiveOutputMount"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 5: WRONG ❌ VS RIGHT ✅
+           ========================================================= -->
+      <section id="page-diff" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-code-compare"></i> Tip Details</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Topic / Headline</label>
+              <input type="text" id="p5Title" value="JavaScript Modern Variable Declaration">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Aspect Ratio</label>
+              <select id="p5Ratio" onchange="updateStageRatio('p5StageBox', this.value); updateDiffRatioLayout(this.value)">
+                <option value="insta_portrait" selected>Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+                <option value="shorts">YouTube Shorts / Reels (9:16)</option>
+                <option value="landscape">YouTube Landscape (16:9)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">❌ Don't Do This (Mistake Code)</label>
+              <textarea id="p5WrongCode" style="height:110px;">// Don't use 'var' in modern JS
+var userId = 101;
+var userName = "Piyush";
+
+// Problem: Global leak & re-declaration bug</textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">✅ Do This Instead (Best Practice)</label>
+              <textarea id="p5RightCode" style="height:110px;">// Use const by default, let if reassigning
+const userId = 101;
+let userName = "Piyush";
+
+// Clean block-scoped protection</textarea>
+            </div>
+            <div class="btn-row">
+              <button class="btn-dark" onclick="renderDiffP5()"><i class="fa-solid fa-arrows-rotate"></i> Update Diff Card</button>
+              <button class="btn-primary" onclick="captureDiffP5()"><i class="fa-solid fa-camera"></i> Download Diff Poster</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-image"></i> Diff Card Poster Preview</span>
+            </div>
+            <div class="preview-stage-container">
+              <div class="ratio-stage-box stage-ratio-4-5" id="p5StageBox">
+                <div class="royal-export-banner" id="p5ExportFrame">
+                  <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                  <div class="mac-window-card">
+                    <div class="mac-window-top">
+                      <div class="mac-dots">
+                        <div class="mac-dot" style="background:#ef4444;"></div>
+                        <div class="mac-dot" style="background:#f59e0b;"></div>
+                        <div class="mac-dot" style="background:#10b981;"></div>
+                      </div>
+                      <span class="mac-window-title" id="p5HeaderDisplay">JavaScript Modern Variable Declaration</span>
+                      <div style="width:25px;"></div>
+                    </div>
+                    <div style="padding:18px; background:#0f172a;">
+                      <div class="diff-grid-layout diff-grid-stacked" id="p5DiffGrid">
+                        <div class="diff-pane diff-bad">
+                          <div class="diff-header-badge"><i class="fa-solid fa-circle-xmark"></i> Don't Do This</div>
+                          <pre id="p5WrongView" style="margin:0; white-space:pre-wrap;"></pre>
+                        </div>
+                        <div class="diff-pane diff-good">
+                          <div class="diff-header-badge"><i class="fa-solid fa-circle-check"></i> Do This Instead</div>
+                          <pre id="p5RightView" style="margin:0; white-space:pre-wrap;"></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 6: QUIZ & MCQ MAKER
+           ========================================================= -->
+      <section id="page-quiz" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-circle-question"></i> Quiz Configuration</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Aspect Ratio</label>
+              <select id="p6Ratio" onchange="updateStageRatio('p6StageBox', this.value); updateQuizRatioLayout(this.value)">
+                <option value="insta_square" selected>Instagram Square (1:1)</option>
+                <option value="insta_portrait">Instagram Portrait (4:5)</option>
+                <option value="shorts">YouTube Shorts / Reels (9:16)</option>
+                <option value="landscape">YouTube Landscape (16:9)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Question</label>
+              <textarea id="p6Question" style="height:70px;">Which method is used to parse a JSON string into a JavaScript Object?</textarea>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Option A</label>
+              <input type="text" id="p6OptA" value="JSON.stringify()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Option B</label>
+              <input type="text" id="p6OptB" value="JSON.parse()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Option C</label>
+              <input type="text" id="p6OptC" value="JSON.toObject()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Option D</label>
+              <input type="text" id="p6OptD" value="JSON.convert()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Correct Option</label>
+              <select id="p6CorrectOpt">
+                <option value="B">Option B (JSON.parse())</option>
+                <option value="A">Option A</option>
+                <option value="C">Option C</option>
+                <option value="D">Option D</option>
+              </select>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="captureQuizP6(false)"><i class="fa-solid fa-image"></i> Download Question Card</button>
+              <button class="btn-dark" onclick="captureQuizP6(true)"><i class="fa-solid fa-square-check" style="color:#10b981;"></i> Download Answer Key</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-eye"></i> Quiz Card Preview</span>
+            </div>
+            <div class="preview-stage-container">
+              <div class="ratio-stage-box stage-ratio-1-1" id="p6StageBox">
+                <div class="royal-export-banner" id="p6ExportFrame">
+                  <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                  <div class="quiz-poster-card">
+                    <span class="quiz-tag">Daily Web Dev Quiz</span>
+                    <div class="quiz-question-text" id="p6QDisplay">Which method is used to parse a JSON string into a JavaScript Object?</div>
+                    <div class="quiz-options-list quiz-grid-stacked" id="p6QuizOptionsGrid">
+                      <div class="quiz-option-item" id="p6OptADisplay"><span class="opt-letter">A</span> <span class="opt-val">JSON.stringify()</span></div>
+                      <div class="quiz-option-item" id="p6OptBDisplay"><span class="opt-letter">B</span> <span class="opt-val">JSON.parse()</span></div>
+                      <div class="quiz-option-item" id="p6OptCDisplay"><span class="opt-letter">C</span> <span class="opt-val">JSON.toObject()</span></div>
+                      <div class="quiz-option-item" id="p6OptDDisplay"><span class="opt-letter">D</span> <span class="opt-val">JSON.convert()</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 7: MULTI-CSS & CUSTOM CODE VISUAL CHEAT-SHEET
+           ========================================================= -->
+      <section id="page-css" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-palette"></i> CSS Visual Generator</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">CSS Category / Mode</label>
+              <select id="p7Category" onchange="switchCssCategory(this.value)">
+                <option value="flex">Flexbox Alignment</option>
+                <option value="grid">CSS Grid Layout</option>
+                <option value="shadow">Box Shadow & Neon Glow</option>
+                <option value="radius">Border Radius & Shapes</option>
+                <option value="custom">✨ Custom CSS Property & Code</option>
+              </select>
+            </div>
+
+            <!-- Standard Preset Property Wrap -->
+            <div class="input-group" id="p7PropWrap">
+              <label class="input-label">Property Value</label>
+              <select id="p7PropSelect" onchange="renderCssVisualP7()"></select>
+            </div>
+
+            <!-- Custom CSS & HTML Inputs (Visible only when 'custom' is selected) -->
+            <div id="p7CustomBox" style="display:none; flex-direction:column; gap:12px;">
+              <div class="input-group">
+                <label class="input-label">Custom CSS Property Rule</label>
+                <textarea id="p7CustomCss" style="height:75px;" placeholder="e.g. transform: rotate(15deg) scale(1.1); filter: drop-shadow(0 0 15px #f59e0b); background: #f59e0b;" oninput="renderCssVisualP7()">transform: scale(1.05) rotate(-3deg);
+background: linear-gradient(135deg, #f59e0b, #ec4899);
+box-shadow: 0 10px 25px rgba(245, 158, 11, 0.5);</textarea>
+              </div>
+              <div class="input-group">
+                <label class="input-label">Custom Element HTML / Content</label>
+                <textarea id="p7CustomHtml" style="height:65px;" placeholder="HTML inside preview element" oninput="renderCssVisualP7()"><div style="padding:20px; color:#fff; font-weight:800; text-align:center; border-radius:14px;">
+  <span>Custom CSS Pro</span>
+</div></textarea>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Cheat-Sheet Heading</label>
+              <input type="text" id="p7Title" value="CSS Flexbox Alignment Master Guide">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Aspect Ratio</label>
+              <select id="p7Ratio" onchange="updateStageRatio('p7StageBox', this.value)">
+                <option value="insta_portrait" selected>Instagram Portrait (4:5)</option>
+                <option value="insta_square">Instagram Square (1:1)</option>
+                <option value="shorts">YouTube Shorts / Reels (9:16)</option>
+                <option value="landscape">YouTube Landscape (16:9)</option>
+              </select>
+            </div>
+
+            <button class="btn-primary" onclick="captureCssVisualP7()"><i class="fa-solid fa-camera"></i> Download Cheat-Sheet Card</button>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-layer-group"></i> Visual Infographic Preview</span>
+            </div>
+            <div class="preview-stage-container">
+              <div class="ratio-stage-box stage-ratio-4-5" id="p7StageBox">
+                <div class="royal-export-banner" id="p7ExportFrame">
+                  <div class="pro-watermark"><i class="fa-solid fa-circle-check"></i> <span class="wm-active-tag">@CodeWithPiyush</span></div>
+                  <div class="mac-window-card">
+                    <div class="mac-window-top">
+                      <div class="mac-dots">
+                        <div class="mac-dot" style="background:#ef4444;"></div>
+                        <div class="mac-dot" style="background:#f59e0b;"></div>
+                        <div class="mac-dot" style="background:#10b981;"></div>
+                      </div>
+                      <span class="mac-window-title" id="p7TitleDisplay">CSS Flexbox Alignment Master Guide</span>
+                      <div style="width:25px;"></div>
+                    </div>
+                    <div class="css-diagram-display">
+                      <div class="css-rule-tag" id="p7CodeTag">display: flex; justify-content: space-between;</div>
+                      <div class="css-visual-sandbox" id="p7VisualMount"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PAGE 8: CODE TO CLASSIC PDF EBOOK & GUIDE
+           ========================================================= -->
+      <section id="page-pdf" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-file-pdf" style="color:#ef4444;"></i> Classic Code PDF Publisher</span>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">PDF eBook Title</label>
+              <input type="text" id="pdfDocTitle" value="Complete Glassmorphic Web Component Guide" oninput="updatePdfPreview()">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Code Topic / Project Name</label>
+              <input type="text" id="pdfDocSubtitle" value="Production Ready HTML, CSS & Vanilla JavaScript Source Code" oninput="updatePdfPreview()">
+            </div>
+
+            <div class="input-group">
+              <label class="input-label">Brand Author Text</label>
+              <input type="text" id="pdfDocBrand" value="Code With Piyush • Official Guide" oninput="updatePdfPreview()">
+            </div>
+
+            <!-- 4 Sections for PDF Code Input -->
+            <div class="pdf-editor-tabs">
+              <button class="pdf-tab-btn active" onclick="switchPdfEditor('html', this)">1. HTML</button>
+              <button class="pdf-tab-btn" onclick="switchPdfEditor('css', this)">2. CSS</button>
+              <button class="pdf-tab-btn" onclick="switchPdfEditor('js', this)">3. JavaScript</button>
+              <button class="pdf-tab-btn" onclick="switchPdfEditor('all', this)">4. Single File / Any Code</button>
+            </div>
+
+            <div id="pdfInputHtmlWrap">
+              <label class="input-label">HTML Code Block</label>
+              <textarea id="pdfCodeHtml" style="height:120px;" oninput="updatePdfPreview()"><!-- Glassmorphic Hero Card -->
+<div class="luxury-card">
+  <div class="card-badge">✨ Trending UI</div>
+  <h2>Welcome to Creator Studio</h2>
+  <p>Build high-converting social media code showcases with royal gold aesthetics.</p>
+  <button class="btn-glow" onclick="activateGlow()">Get Started</button>
+</div></textarea>
+            </div>
+
+            <div id="pdfInputCssWrap" style="display:none;">
+              <label class="input-label">CSS Code Block</label>
+              <textarea id="pdfCodeCss" style="height:120px;" oninput="updatePdfPreview()">/* Luxury Glassmorphism Styles */
+.luxury-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid #ebd9b0;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15);
+}
+.btn-glow {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}</textarea>
+            </div>
+
+            <div id="pdfInputJsWrap" style="display:none;">
+              <label class="input-label">JavaScript Code Block</label>
+              <textarea id="pdfCodeJs" style="height:120px;" oninput="updatePdfPreview()">// Interactive Activation Script
+function activateGlow() {
+  const card = document.querySelector('.luxury-card');
+  card.style.transform = 'scale(1.03)';
+  card.style.boxShadow = '0 25px 60px rgba(217, 119, 6, 0.35)';
+  console.log("Component successfully energized!");
+}</textarea>
+            </div>
+
+            <div id="pdfInputAllWrap" style="display:none;">
+              <label class="input-label">Complete 1-File Project or Other Language (Python, C++, etc.)</label>
+              <textarea id="pdfCodeAll" style="height:120px;" oninput="updatePdfPreview()"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>One File Complete Project</title>
+  <style>
+    body { background: #faf7f2; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .card { background: #ffffff; padding: 30px; border-radius: 16px; border: 2px solid #ebd9b0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>All-In-One Complete File</h1>
+  </div>
+</body>
+</html></textarea>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-primary" onclick="downloadClassicPdf()"><i class="fa-solid fa-file-arrow-down"></i> Export Classic Gold PDF</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-book-open"></i> Live A4 Printable PDF Preview</span>
+            </div>
+            <div class="preview-stage-container" style="background:#e2e8f0; padding:20px;">
+              <!-- Live A4 Printable Document Structure -->
+              <div id="pdfPrintDocument">
+                <div class="pdf-header-hero">
+                  <div>
+                    <span class="pdf-hero-badge">Verified Code Guide</span>
+                    <div class="pdf-hero-title" id="pdfViewTitle">Complete Glassmorphic Web Component Guide</div>
+                    <div class="pdf-hero-subtitle" id="pdfViewSubtitle">Production Ready HTML, CSS & Vanilla JavaScript Source Code</div>
+                  </div>
+                  <div class="pdf-brand-tag" id="pdfViewBrand"><i class="fa-solid fa-shield-halved"></i> Code With Piyush • Official Guide</div>
+                </div>
+
+                <div class="pdf-body-content">
+                  <!-- Section 1: HTML -->
+                  <div class="pdf-code-section" id="pdfSecHtml">
+                    <div class="pdf-section-titlebar">
+                      <span><i class="fa-brands fa-html5" style="color:#e34f26;"></i> 01. HTML STRUCTURE (index.html)</span>
+                      <span style="font-size:0.75rem; color:#b45309;">HTML5 Semantic</span>
+                    </div>
+                    <pre class="pdf-code-block" id="pdfBlockHtml"></pre>
+                  </div>
+
+                  <!-- Section 2: CSS -->
+                  <div class="pdf-code-section" id="pdfSecCss">
+                    <div class="pdf-section-titlebar">
+                      <span><i class="fa-brands fa-css3-alt" style="color:#264de4;"></i> 02. STYLESHEET RULES (style.css)</span>
+                      <span style="font-size:0.75rem; color:#b45309;">CSS3 Glassmorphic</span>
+                    </div>
+                    <pre class="pdf-code-block" id="pdfBlockCss"></pre>
+                  </div>
+
+                  <!-- Section 3: JS -->
+                  <div class="pdf-code-section" id="pdfSecJs">
+                    <div class="pdf-section-titlebar">
+                      <span><i class="fa-brands fa-js" style="color:#f7df1e;"></i> 03. JAVASCRIPT LOGIC (script.js)</span>
+                      <span style="font-size:0.75rem; color:#b45309;">Vanilla ES6+</span>
+                    </div>
+                    <pre class="pdf-code-block" id="pdfBlockJs"></pre>
+                  </div>
+
+                  <!-- Section 4: All-in-One / Any -->
+                  <div class="pdf-code-section" id="pdfSecAll" style="display:none;">
+                    <div class="pdf-section-titlebar">
+                      <span><i class="fa-solid fa-code" style="color:#10b981;"></i> 04. COMPLETE SINGLE-FILE PROJECT / SCRIPT</span>
+                      <span style="font-size:0.75rem; color:#b45309;">Full Source</span>
+                    </div>
+                    <pre class="pdf-code-block" id="pdfBlockAll"></pre>
+                  </div>
+                </div>
+
+                <div class="pdf-footer-bar">
+                  <span id="pdfFooterBrandText">Code With Piyush • Creator Code Studio Pro</span>
+                  <span style="color:#d97706;"><i class="fa-solid fa-award"></i> Premium Educational Resource</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+      <!-- =========================================================
+           PAGE 9: REAL NOTEBOOK HANDWRITTEN NOTES (A4 SHEET)
+           ========================================================= -->
+      <section id="page-notebook" class="page-section">
+        <div class="view-grid">
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-book-bookmark" style="color:#d97706;"></i> Real Notebook Handwritten (A4 Sheet)</span>
+            </div>
+
+            <!-- Complete Font Selector: 8 Real Handwriting + 6 Cursive & Calligraphy -->
+            <div class="input-group">
+              <label class="input-label">Select Handwriting / Cursive Font (14 Fonts)</label>
+              <select id="nbFontSelect" onchange="renderNotebook()">
+                <optgroup label="✍️ Real Handwriting Fonts (8 Styles)">
+                  <option value="'Kalam', cursive" selected>1. Kalam (Indian Student Hindi & English)</option>
+                  <option value="'Caveat', cursive">2. Caveat (Natural Casual Ballpoint Pen)</option>
+                  <option value="'Patrick Hand', cursive">3. Patrick Hand (Neat Textbook Classroom Notes)</option>
+                  <option value="'Shadows Into Light', cursive">4. Shadows Into Light (Clean Fine Gel Pen)</option>
+                  <option value="'Indie Flower', cursive">5. Indie Flower (Carefree Rounded Pen)</option>
+                  <option value="'Architects Daughter', cursive">6. Architects Daughter (Crisp Technical Handwriting)</option>
+                  <option value="'Delicious Handrawn', cursive">7. Delicious Handrawn (Thick Smooth Marker Pen)</option>
+                  <option value="'Nanum Pen Script', cursive">8. Nanum Pen Script (Delicate Sharp Tip Pen)</option>
+                </optgroup>
+                <optgroup label="✒️ Luxury Cursive & Script Fonts (6 Styles)">
+                  <option value="'Dancing Script', cursive">9. Dancing Script (Smooth Flowing Cursive)</option>
+                  <option value="'Great Vibes', cursive">10. Great Vibes (Royal Luxury Calligraphy)</option>
+                  <option value="'Pacifico', cursive">11. Pacifico (Bold Fluid Brush Cursive)</option>
+                  <option value="'Sacramento', cursive">12. Sacramento (Delicate Slanted Cursive)</option>
+                  <option value="'Alex Brush', cursive">13. Alex Brush (Classic Fluent Script Cursive)</option>
+                  <option value="'Allura', cursive">14. Allura (Stylized Book Cursive)</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <!-- Page Meta (Date & Page Number) -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div class="input-group">
+                <label class="input-label">Page Number</label>
+                <input type="text" id="nbPageNo" value="Page: 01" oninput="renderNotebook()">
+              </div>
+              <div class="input-group">
+                <label class="input-label">Date Stamping</label>
+                <input type="text" id="nbDate" value="Date: 02/11/2026" oninput="renderNotebook()">
+              </div>
+            </div>
+
+            <!-- Font Size & Line Spacing adjustment -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div class="input-group">
+                <label class="input-label">Font Size (<span id="nbSizeVal">21px</span>)</label>
+                <input type="range" id="nbFontSize" min="16" max="28" value="21" oninput="updateNotebookSizes()">
+              </div>
+              <div class="input-group">
+                <label class="input-label">Ruled Line Height (<span id="nbLineVal">34px</span>)</label>
+                <input type="range" id="nbLineHeight" min="28" max="44" value="34" oninput="updateNotebookSizes()">
+              </div>
+            </div>
+
+            <!-- Page Paper Style -->
+            <div class="input-group">
+              <label class="input-label">Notebook Paper Style</label>
+              <select id="nbPaperStyle" onchange="updateNotebookPaperStyle()">
+                <option value="ruled" selected>Classmate Ruled A4 Notebook (Blue Lines + Double Red Margin)</option>
+                <option value="plain">Blank White Paper (Unruled Sketch/Notes Sheet)</option>
+                <option value="grid">Maths Graph / Grid Notebook Sheet</option>
+              </select>
+            </div>
+
+            <!-- Quick Add Chips -->
+            <div class="input-group">
+              <label class="input-label">Quick Ink Formatting Helper</label>
+              <div class="chip-btn-group">
+                <button type="button" class="format-chip-btn" onclick="insertNotebookTag('Q: ', 'black')">
+                  <span style="color:#09090b; font-weight:800;">● Q: (Black)</span>
+                </button>
+                <button type="button" class="format-chip-btn" onclick="insertNotebookTag('Ans: ', 'blue')">
+                  <span style="color:#1d4ed8; font-weight:800;">● Ans: (Blue)</span>
+                </button>
+                <button type="button" class="format-chip-btn" onclick="insertNotebookTag('# Heading: ', 'red')">
+                  <span style="color:#dc2626; font-weight:800;">● # Heading / Note (Red)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Paste Notes Textarea -->
+            <div class="input-group">
+              <label class="input-label">Paste Your Content Here</label>
+              <textarea id="nbContent" style="height:170px;" oninput="renderNotebook()" placeholder="Yahan content paste karein...
+Q: What is Closure in JavaScript?
+Ans: A closure is the combination of a function bundled together with references to its surrounding state.
+# Key Point: Closures give you access to an outer function's scope from an inner function."># Chapter 01: JavaScript Fundamentals
+
+Q1. What is Closure in JavaScript?
+Ans: A closure is the combination of a function bundled together with references to its surrounding state (lexical environment).
+
+Q2. Where are closures used in real projects?
+Ans: Closures are commonly used to create private variables, in event handlers, setTimeout callbacks, and functional programming.
+
+# Important Note: Closures retain outer variables in memory even after the parent function has finished execution.</textarea>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-primary" onclick="downloadNotebookImage()"><i class="fa-solid fa-camera"></i> Download A4 Notebook Image</button>
+              <button class="btn-dark" onclick="downloadNotebookPdf()"><i class="fa-solid fa-file-pdf" style="color:#ef4444;"></i> Export A4 Notebook PDF</button>
+            </div>
+          </div>
+
+          <!-- Right: Live A4 Physical Notebook Preview (Locked Dimensions) -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-heading"><i class="fa-solid fa-book-open"></i> Full A4 Notebook Page Preview</span>
+              <span style="font-size:0.75rem; color:#b45309; font-weight:700;"><i class="fa-solid fa-file"></i> 794px × 1123px Fixed A4</span>
+            </div>
+
+            <!-- Viewport Wrapper with horizontal scroll on small devices so full A4 is preserved -->
+            <div class="notebook-viewport-wrapper">
+              <!-- Physical Fixed A4 Notebook Sheet (794px x 1123px) -->
+              <div class="notebook-paper-container" id="nbPaperSheet">
+                <!-- Red Top Header with Date & Page Number -->
+                <div class="notebook-top-header">
+                  <div class="notebook-meta-pill" id="nbViewPage">Page: 01</div>
+                  <div class="notebook-meta-pill" id="nbViewDate">Date: 02/11/2026</div>
+                </div>
+
+                <!-- Main Ruled Writing Body (Full 1038px Height With Ruled Lines) -->
+                <div class="notebook-body" id="nbBody">
+                  <!-- Vertical Red Double Margin Lines -->
+                  <div class="notebook-margin-line" id="nbMargin1"></div>
+                  <div class="notebook-margin-line-2" id="nbMargin2"></div>
+
+                  <!-- Text Lines Resting on the Ruled Lines -->
+                  <div class="notebook-text-content" id="nbTextContent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    function navigateTo(pageId, linkEl, title, subtitle) {
+      document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+      if (linkEl) linkEl.classList.add('active');
+
+      document.getElementById('barPageTitle').innerText = title;
+      document.getElementById('barPageSubtitle').innerText = subtitle;
+
+      toggleSidebar(false);
+
+      if (pageId === 'page-slides') generateSlidesP1();
+      if (pageId === 'page-state') mountP2Code();
+      if (pageId === 'page-video') mountP3Code();
+      if (pageId === 'page-split') renderSplitP4();
+      if (pageId === 'page-diff') renderDiffP5();
+      if (pageId === 'page-quiz') renderQuizP6();
+      if (pageId === 'page-css') renderCssVisualP7();
+      if (pageId === 'page-notebook') renderNotebook();
+      if (pageId === 'page-pdf') renderNotebook();
+      updatePdfPreview();
+    }
+
+    function toggleSidebar(open) {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (open) {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+      } else {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      }
+    }
+
+    function syncAllWatermarks(val) {
+      const text = val.trim() || '@CodeWithPiyush';
+      document.querySelectorAll('.wm-active-tag').forEach(el => el.innerText = text);
+      document.getElementById('pdfDocBrand').value = `${text} • Official Guide`;
+      updatePdfPreview();
+    }
+
+    function updateStageRatio(stageId, ratio) {
+      const stage = document.getElementById(stageId);
+      if (!stage) return;
+      stage.className = 'ratio-stage-box';
+
+      if (ratio === 'landscape') stage.classList.add('stage-ratio-16-9');
+      else if (ratio === 'shorts') stage.classList.add('stage-ratio-9-16');
+      else if (ratio === 'insta_portrait') stage.classList.add('stage-ratio-4-5');
+      else if (ratio === 'insta_square') stage.classList.add('stage-ratio-1-1');
+    }
+
+    function updateSplitRatioLayout(ratio) {
+      const dualView = document.getElementById('p4DualView');
+      if (!dualView) return;
+      if (ratio === 'landscape') {
+        dualView.className = 'split-dual-view split-dual-landscape';
+      } else {
+        dualView.className = 'split-dual-view split-dual-stacked';
+      }
+    }
+
+    function updateDiffRatioLayout(ratio) {
+      const diffGrid = document.getElementById('p5DiffGrid');
+      if (!diffGrid) return;
+      if (ratio === 'landscape') {
+        diffGrid.className = 'diff-grid-layout diff-grid-landscape';
+      } else {
+        diffGrid.className = 'diff-grid-layout diff-grid-stacked';
+      }
+    }
+
+    function updateQuizRatioLayout(ratio) {
+      const quizGrid = document.getElementById('p6QuizOptionsGrid');
+      if (!quizGrid) return;
+      if (ratio === 'landscape') {
+        quizGrid.className = 'quiz-options-list quiz-grid-landscape';
+      } else {
+        quizGrid.className = 'quiz-options-list quiz-grid-stacked';
+      }
+    }
+
+    // ==========================================
+    // ZERO-CROP UNIVERSAL ASPECT RATIO EXPORTER
+    // ==========================================
+    const RATIO_CANVAS_DIMS = {
+      landscape: { w: 1920, h: 1080 },
+      shorts: { w: 1080, h: 1920 },
+      insta_portrait: { w: 1080, h: 1350 },
+      insta_square: { w: 1080, h: 1080 }
+    };
+
+    async function exportFrameWithAspect(element, ratioKey, filename) {
+      const dim = RATIO_CANVAS_DIMS[ratioKey] || RATIO_CANVAS_DIMS.insta_square;
+
+      const capturedCanvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false
+      });
+
+      const masterCanvas = document.createElement('canvas');
+      masterCanvas.width = dim.w;
+      masterCanvas.height = dim.h;
+      const ctx = masterCanvas.getContext('2d');
+
+      const bgGrad = ctx.createLinearGradient(0, 0, dim.w, dim.h);
+      bgGrad.addColorStop(0, '#fffcf5');
+      bgGrad.addColorStop(0.4, '#fef4db');
+      bgGrad.addColorStop(0.8, '#fde4a7');
+      bgGrad.addColorStop(1, '#f59e0b');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, dim.w, dim.h);
+
+      const maxW = dim.w * 0.90;
+      const maxH = dim.h * 0.90;
+
+      const scale = Math.min(maxW / capturedCanvas.width, maxH / capturedCanvas.height);
+      const drawW = capturedCanvas.width * scale;
+      const drawH = capturedCanvas.height * scale;
+      const drawX = (dim.w - drawW) / 2;
+      const drawY = (dim.h - drawH) / 2;
+
+      ctx.drawImage(capturedCanvas, drawX, drawY, drawW, drawH);
+
+      downloadDataUrl(masterCanvas.toDataURL('image/png', 1.0), filename);
+    }
+
+    // ==========================================
+    // PAGE 1: CODE SLIDES ENGINE
+    // ==========================================
+    let p1Canvases = [];
+    const P1_SIZES = {
+      shorts: { width: 1080, height: 1920, maxLines: 32 },
+      landscape: { width: 1920, height: 1080, maxLines: 15 },
+      insta_portrait: { width: 1080, height: 1350, maxLines: 20 },
+      insta_square: { width: 1080, height: 1080, maxLines: 14 }
+    };
+
+    function getWrappedLines(ctx, text, maxWidth) {
+      if (ctx.measureText(text).width <= maxWidth) return [text];
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+
+      for (let i = 0; i < words.length; i++) {
+        const testLine = currentLine ? currentLine + ' ' + words[i] : words[i];
+        if (ctx.measureText(testLine).width <= maxWidth) {
+          currentLine = testLine;
+        } else {
+          if (currentLine) lines.push(currentLine);
+          if (ctx.measureText(words[i]).width > maxWidth) {
+            let chunk = '';
+            for (let char of words[i]) {
+              if (ctx.measureText(chunk + char).width <= maxWidth) {
+                chunk += char;
+              } else {
+                lines.push(chunk);
+                chunk = '  ' + char;
+              }
+            }
+            currentLine = chunk;
+          } else {
+            currentLine = '  ' + words[i];
+          }
+        }
+      }
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x + radius, y);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    function generateSlidesP1() {
+      const fileName = document.getElementById('p1FileName').value.trim() || 'code.css';
+      const code = document.getElementById('p1Code').value;
+      const ratioKey = document.getElementById('p1Ratio').value;
+      const config = P1_SIZES[ratioKey];
+
+      const rawLines = code.split('\n');
+      const testCanvas = document.createElement('canvas');
+      const testCtx = testCanvas.getContext('2d');
+      testCtx.font = "600 28px 'Consolas', monospace";
+
+      const marginX = config.width === 1920 ? 120 : 80;
+      const cardW = config.width - (marginX * 2);
+      const paddingLeft = 50;
+      const gutterWidth = 75;
+      const paddingRight = 40;
+      const availableCodeWidth = cardW - paddingLeft - gutterWidth - paddingRight;
+
+      const printableLines = [];
+      rawLines.forEach((origLine, origIdx) => {
+        const wrappedChunks = getWrappedLines(testCtx, origLine, availableCodeWidth);
+        wrappedChunks.forEach((chunk, chunkIdx) => {
+          printableLines.push({ text: chunk, lineNum: chunkIdx === 0 ? origIdx + 1 : '' });
+        });
+      });
+
+      const maxLinesPerSlide = config.maxLines;
+      const totalParts = Math.ceil(printableLines.length / maxLinesPerSlide) || 1;
+
+      const gallery = document.getElementById('p1Gallery');
+      gallery.innerHTML = '';
+      p1Canvases = [];
+
+      for (let i = 0; i < totalParts; i++) {
+        const startIdx = i * maxLinesPerSlide;
+        const endIdx = Math.min(startIdx + maxLinesPerSlide, printableLines.length);
+        const slideLines = printableLines.slice(startIdx, endIdx);
+        const partTitle = totalParts > 1 ? `${fileName} (Part ${i + 1}/${totalParts})` : fileName;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = config.width;
+        canvas.height = config.height;
+        const ctx = canvas.getContext('2d');
+
+        const outerGrad = ctx.createLinearGradient(0, 0, config.width, config.height);
+        outerGrad.addColorStop(0, '#fffcf5');
+        outerGrad.addColorStop(0.4, '#fef4db');
+        outerGrad.addColorStop(0.8, '#fde4a7');
+        outerGrad.addColorStop(1, '#f59e0b');
+        ctx.fillStyle = outerGrad;
+        ctx.fillRect(0, 0, config.width, config.height);
+
+        const marginY = config.height === 1080 && config.width === 1920 ? 80 : 110;
+        const cardH = config.height - (marginY * 2);
+
+        ctx.save();
+        ctx.shadowColor = 'rgba(180, 83, 9, 0.25)';
+        ctx.shadowBlur = 40;
+        ctx.shadowOffsetY = 20;
+        ctx.fillStyle = '#ffffff';
+        roundRect(ctx, marginX, marginY, cardW, cardH, 28, true, false);
+        ctx.restore();
+
+        ctx.strokeStyle = '#fef3c7';
+        ctx.lineWidth = 3;
+        roundRect(ctx, marginX, marginY, cardW, cardH, 28, false, true);
+
+        const titleBarHeight = 90;
+        ctx.fillStyle = '#faf7f0';
+        ctx.beginPath();
+        ctx.moveTo(marginX + 28, marginY);
+        ctx.lineTo(marginX + cardW - 28, marginY);
+        ctx.quadraticCurveTo(marginX + cardW, marginY, marginX + cardW, marginY + 28);
+        ctx.lineTo(marginX + cardW, marginY + titleBarHeight);
+        ctx.lineTo(marginX, marginY + titleBarHeight);
+        ctx.lineTo(marginX, marginY + 28);
+        ctx.quadraticCurveTo(marginX, marginY, marginX + 28, marginY);
+        ctx.closePath();
+        ctx.fill();
+
+        const dotY = marginY + (titleBarHeight / 2);
+        ['#ef4444', '#f59e0b', '#10b981'].forEach((col, idx) => {
+          ctx.beginPath();
+          ctx.arc(marginX + 45 + (idx * 33), dotY, 11, 0, Math.PI * 2);
+          ctx.fillStyle = col;
+          ctx.fill();
+        });
+
+        ctx.fillStyle = '#78350f';
+        ctx.font = "bold 26px 'Segoe UI', sans-serif";
+        ctx.textAlign = 'center';
+        ctx.fillText(partTitle, marginX + (cardW / 2), dotY + 9);
+
+        const wmText = document.getElementById('globalBrandHandle').value.trim() || '@CodeWithPiyush';
+        ctx.fillStyle = '#d97706';
+        ctx.font = "bold 22px 'Segoe UI', sans-serif";
+        ctx.textAlign = 'right';
+        ctx.fillText(wmText, marginX + cardW - 30, dotY + 8);
+
+        const fontSize = 28;
+        const lineHeight = 44;
+        const codeStartY = marginY + titleBarHeight + 55;
+        ctx.textAlign = 'left';
+
+        slideLines.forEach((item, index) => {
+          const y = codeStartY + (index * lineHeight);
+          if (item.lineNum !== '') {
+            ctx.fillStyle = '#d4af37';
+            ctx.font = `600 ${fontSize}px 'Consolas', monospace`;
+            ctx.fillText(item.lineNum.toString().padStart(2, '0'), marginX + paddingLeft, y);
+          }
+          ctx.fillStyle = '#0f172a';
+          ctx.font = `600 ${fontSize}px 'Consolas', monospace`;
+          ctx.fillText(item.text, marginX + paddingLeft + gutterWidth, y);
+        });
+
+        p1Canvases.push({ canvas, title: `${fileName}_part_${i + 1}` });
+
+        const card = document.createElement('div');
+        card.style.cssText = 'background:#ffffff; border:1.5px solid var(--gold-border); border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:10px; box-shadow:0 4px 14px rgba(0,0,0,0.03);';
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; color:var(--gold-700); font-size:0.85rem;">${partTitle}</span>
+            <button class="btn-dark" style="padding:6px 12px; font-size:0.75rem; flex:none; min-width:auto;" onclick="downloadDataUrl(p1Canvases[${i}].canvas.toDataURL('image/png'), '${fileName}_part_${i + 1}.png')">Download PNG</button>
+          </div>
+        `;
+        canvas.style.cssText = 'width:100%; height:auto; border-radius:8px; border:1px solid #f1e4c3;';
+        card.appendChild(canvas);
+        gallery.appendChild(card);
+      }
+    }
+
+    function downloadAllSlidesP1() {
+      p1Canvases.forEach((item, idx) => {
+        setTimeout(() => downloadDataUrl(item.canvas.toDataURL('image/png'), `${item.title}.png`), idx * 250);
+      });
+    }
+
+    // ==========================================
+    // PAGE 2: LIVE STATE CAPTURE ENGINE
+    // ==========================================
+    let p2SnapCounter = 0;
+
+    function mountP2Code() {
+      const target = document.getElementById('p2TargetContainer');
+      const html = document.getElementById('p2Html').value;
+      const css = document.getElementById('p2Css').value;
+      const js = document.getElementById('p2Js').value;
+
+      target.innerHTML = '';
+      const oldStyle = document.getElementById('p2-runtime-style');
+      if (oldStyle) oldStyle.remove();
+
+      const style = document.createElement('style');
+      style.id = 'p2-runtime-style';
+      style.innerHTML = css;
+      document.head.appendChild(style);
+
+      target.innerHTML = html;
+
+      try {
+        const fn = new Function(js);
+        fn();
+      } catch (err) {
+        console.error('P2 JS Error:', err);
+      }
+    }
+
+    async function captureP2State() {
+      const frame = document.getElementById('p2ExportFrame');
+      const ratioKey = document.getElementById('p2Ratio').value;
+      p2SnapCounter++;
+      await exportFrameWithAspect(frame, ratioKey, `state_snapshot_${p2SnapCounter}.png`);
+      
+      const thumb = await html2canvas(frame, { scale: 1, backgroundColor: null });
+      const gallery = document.getElementById('p2Gallery');
+      const card = document.createElement('div');
+      card.style.cssText = 'background:#ffffff; border:1.5px solid var(--gold-border); border-radius:12px; padding:10px; display:flex; flex-direction:column; gap:8px;';
+      card.innerHTML = `
+        <img src="${thumb.toDataURL('image/png')}" style="width:100%; height:180px; object-fit:contain; background:#faf7f2; border-radius:8px; border:1px solid #ebd9b0;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-weight:800; font-size:0.85rem; color:var(--gold-700);">State ${p2SnapCounter}</span>
+          <button class="btn-dark" style="padding:4px 10px; font-size:0.75rem; min-width:auto;" onclick="exportFrameWithAspect(document.getElementById('p2ExportFrame'), '${ratioKey}', 'state_snapshot_${p2SnapCounter}.png')">Download</button>
+        </div>
+      `;
+      gallery.appendChild(card);
+    }
+
+    function clearP2Gallery() {
+      document.getElementById('p2Gallery').innerHTML = '';
+      p2SnapCounter = 0;
+    }
+
+    // ==========================================
+    // PAGE 3: HD VIDEO RECORDER (ZERO CROP)
+    // ==========================================
+    let p3Recorder;
+    let p3Chunks = [];
+    let isP3Recording = false;
+
+    const p3Canvas = document.getElementById('p3EngineCanvas');
+    const p3Ctx = p3Canvas.getContext('2d');
+
+    const P3_CONFIGS = {
+      shorts: { width: 1080, height: 1920 },
+      landscape: { width: 1920, height: 1080 },
+      insta_portrait: { width: 1080, height: 1350 },
+      insta_square: { width: 1080, height: 1080 }
+    };
+
+    function mountP3Code() {
+      const target = document.getElementById('p3TargetContainer');
+      const html = document.getElementById('p3Html').value;
+      const css = document.getElementById('p3Css').value;
+      const js = document.getElementById('p3Js').value;
+
+      target.innerHTML = '';
+      const oldStyle = document.getElementById('p3-runtime-style');
+      if (oldStyle) oldStyle.remove();
+
+      const style = document.createElement('style');
+      style.id = 'p3-runtime-style';
+      style.innerHTML = css;
+      document.head.appendChild(style);
+
+      target.innerHTML = html;
+
+      try {
+        const fn = new Function(js);
+        fn();
+      } catch (err) {
+        console.error('P3 JS Error:', err);
+      }
+    }
+
+    async function captureP3VideoLoop() {
+      if (!isP3Recording) return;
+      const targetBox = document.getElementById('p3RenderFrame');
+
+      try {
+        const snap = await html2canvas(targetBox, {
+          backgroundColor: null,
+          scale: 2,
+          useCORS: true,
+          logging: false
+        });
+
+        const bgGrad = p3Ctx.createLinearGradient(0, 0, p3Canvas.width, p3Canvas.height);
+        bgGrad.addColorStop(0, '#fffcf5');
+        bgGrad.addColorStop(0.4, '#fef4db');
+        bgGrad.addColorStop(0.8, '#fde4a7');
+        bgGrad.addColorStop(1, '#f59e0b');
+        p3Ctx.fillStyle = bgGrad;
+        p3Ctx.fillRect(0, 0, p3Canvas.width, p3Canvas.height);
+
+        const maxW = p3Canvas.width * 0.90;
+        const maxH = p3Canvas.height * 0.90;
+
+        const scale = Math.min(maxW / snap.width, maxH / snap.height);
+        const w = snap.width * scale;
+        const h = snap.height * scale;
+        const x = (p3Canvas.width - w) / 2;
+        const y = (p3Canvas.height - h) / 2;
+
+        p3Ctx.drawImage(snap, x, y, w, h);
+      } catch (e) {
+        console.warn('Video loop frame error:', e);
+      }
+
+      if (isP3Recording) {
+        setTimeout(captureP3VideoLoop, 35);
+      }
+    }
+
+    function startVideoRecordP3() {
+      const ratioKey = document.getElementById('p3Ratio').value;
+      const cfg = P3_CONFIGS[ratioKey] || P3_CONFIGS.shorts;
+
+      p3Canvas.width = cfg.width;
+      p3Canvas.height = cfg.height;
+
+      const stream = p3Canvas.captureStream(30);
+      p3Chunks = [];
+
+      let mimeType = 'video/webm; codecs=vp9';
+      if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'video/webm';
+
+      p3Recorder = new MediaRecorder(stream, {
+        mimeType: mimeType,
+        videoBitsPerSecond: 8000000
+      });
+
+      p3Recorder.ondataavailable = e => {
+        if (e.data.size > 0) p3Chunks.push(e.data);
+      };
+
+      p3Recorder.onstop = exportVideoP3;
+
+      isP3Recording = true;
+      p3Recorder.start();
+      captureP3VideoLoop();
+
+      document.getElementById('btnStartVideoP3').style.display = 'none';
+      document.getElementById('btnStopVideoP3').style.display = 'flex';
+      document.getElementById('p3RecStatus').style.display = 'flex';
+    }
+
+    function stopVideoRecordP3() {
+      isP3Recording = false;
+      if (p3Recorder && p3Recorder.state !== 'inactive') {
+        p3Recorder.stop();
+      }
+
+      document.getElementById('btnStartVideoP3').style.display = 'flex';
+      document.getElementById('btnStopVideoP3').style.display = 'none';
+      document.getElementById('p3RecStatus').style.display = 'none';
+    }
+
+    function exportVideoP3() {
+      const blob = new Blob(p3Chunks, { type: 'video/webm' });
+      const url = URL.createObjectURL(blob);
+
+      const card = document.getElementById('p3VideoDownloadCard');
+      const player = document.getElementById('p3VideoPlayer');
+      const btn = document.getElementById('p3DownloadBtn');
+
+      player.src = url;
+      card.style.display = 'flex';
+
+      btn.onclick = () => {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `hd_creator_output_${Date.now()}.webm`;
+        a.click();
+      };
+    }
+
+    // ==========================================
+    // PAGE 4: SPLIT-SCREEN ENGINE
+    // ==========================================
+    function switchSplitEditor(type, btn) {
+      document.querySelectorAll('.split-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('splitInputHtmlBox').style.display = type === 'html' ? 'block' : 'none';
+      document.getElementById('splitInputCssBox').style.display = type === 'css' ? 'block' : 'none';
+      document.getElementById('splitInputJsBox').style.display = type === 'js' ? 'block' : 'none';
+    }
+
+    function renderSplitP4() {
+      const title = document.getElementById('p4Title').value.trim() || 'Split Component';
+      const html = document.getElementById('p4Html').value;
+      const css = document.getElementById('p4Css').value;
+      const js = document.getElementById('p4Js').value;
+
+      document.getElementById('p4TitleDisplay').innerText = title;
+      document.getElementById('p4PreView').innerText = `${html}\n\n<style>\n${css}\n</style>`;
+
+      const mount = document.getElementById('p4LiveOutputMount');
+      mount.innerHTML = '';
+      const oldStyle = document.getElementById('p4-split-style');
+      if (oldStyle) oldStyle.remove();
+
+      const style = document.createElement('style');
+      style.id = 'p4-split-style';
+      style.innerHTML = css;
+      document.head.appendChild(style);
+
+      mount.innerHTML = html;
+
+      try {
+        const fn = new Function(js);
+        fn();
+      } catch (err) {
+        console.error('P4 JS Error:', err);
+      }
+    }
+
+    async function captureSplitP4() {
+      const frame = document.getElementById('p4ExportFrame');
+      const ratioKey = document.getElementById('p4Ratio').value;
+      await exportFrameWithAspect(frame, ratioKey, 'split_screen_showcase.png');
+    }
+
+    // ==========================================
+    // PAGE 5: WRONG VS RIGHT ENGINE
+    // ==========================================
+    function renderDiffP5() {
+      const title = document.getElementById('p5Title').value.trim() || 'Coding Tip';
+      const wrong = document.getElementById('p5WrongCode').value;
+      const right = document.getElementById('p5RightCode').value;
+
+      document.getElementById('p5HeaderDisplay').innerText = title;
+      document.getElementById('p5WrongView').innerText = wrong;
+      document.getElementById('p5RightView').innerText = right;
+    }
+
+    async function captureDiffP5() {
+      const frame = document.getElementById('p5ExportFrame');
+      const ratioKey = document.getElementById('p5Ratio').value;
+      await exportFrameWithAspect(frame, ratioKey, 'code_diff_tip_card.png');
+    }
+
+    // ==========================================
+    // PAGE 6: QUIZ & MCQ ENGINE
+    // ==========================================
+    function renderQuizP6(highlightAnswer = false) {
+      const q = document.getElementById('p6Question').value;
+      const a = document.getElementById('p6OptA').value;
+      const b = document.getElementById('p6OptB').value;
+      const c = document.getElementById('p6OptC').value;
+      const d = document.getElementById('p6OptD').value;
+      const correct = document.getElementById('p6CorrectOpt').value;
+
+      document.getElementById('p6QDisplay').innerText = q;
+      document.getElementById('p6OptADisplay').querySelector('.opt-val').innerText = a;
+      document.getElementById('p6OptBDisplay').querySelector('.opt-val').innerText = b;
+      document.getElementById('p6OptCDisplay').querySelector('.opt-val').innerText = c;
+      document.getElementById('p6OptDDisplay').querySelector('.opt-val').innerText = d;
+
+      ['A', 'B', 'C', 'D'].forEach(letter => {
+        const item = document.getElementById(`p6Opt${letter}Display`);
+        item.classList.remove('correct-answer');
+        if (highlightAnswer && correct === letter) {
+          item.classList.add('correct-answer');
+        }
+      });
+    }
+
+    async function captureQuizP6(isAnswerKey) {
+      renderQuizP6(isAnswerKey);
+      const frame = document.getElementById('p6ExportFrame');
+      const ratioKey = document.getElementById('p6Ratio').value;
+      const filename = isAnswerKey ? 'quiz_answer_key_card.png' : 'quiz_poll_question_card.png';
+      await exportFrameWithAspect(frame, ratioKey, filename);
+      if (isAnswerKey) renderQuizP6(false);
+    }
+
+    // ==========================================
+    // PAGE 7: MULTI-CSS & CUSTOM CODE VISUAL CHEAT-SHEET
+    // ==========================================
+    const CSS_DATA = {
+      flex: {
+        title: 'CSS Flexbox Alignment Master Guide',
+        options: [
+          { label: 'justify-content: space-between;', val: 'space-between' },
+          { label: 'justify-content: center;', val: 'center' },
+          { label: 'justify-content: space-around;', val: 'space-around' },
+          { label: 'justify-content: space-evenly;', val: 'space-evenly' },
+          { label: 'justify-content: flex-end;', val: 'flex-end' }
+        ]
+      },
+      grid: {
+        title: 'CSS Grid Column Templates',
+        options: [
+          { label: 'grid-template-columns: repeat(3, 1fr);', val: 'repeat(3, 1fr)' },
+          { label: 'grid-template-columns: 1fr 2fr 1fr;', val: '1fr 2fr 1fr' },
+          { label: 'grid-template-columns: repeat(2, 1fr);', val: 'repeat(2, 1fr)' }
+        ]
+      },
+      shadow: {
+        title: 'Modern Box Shadow & Neon Glow',
+        options: [
+          { label: 'box-shadow: 0 0 25px #f59e0b (Neon Amber)', val: '0 0 25px #f59e0b' },
+          { label: 'box-shadow: 0 20px 40px rgba(0,0,0,0.6) (Deep Drop)', val: '0 20px 40px rgba(0,0,0,0.6)' },
+          { label: 'box-shadow: inset 0 0 20px #38bdf8 (Cyan Inner)', val: 'inset 0 0 20px #38bdf8' }
+        ]
+      },
+      radius: {
+        title: 'Border Radius & Custom Shapes',
+        options: [
+          { label: 'border-radius: 50% (Circle Avatar)', val: '50%' },
+          { label: 'border-radius: 30px 10px 30px 10px (Leaf Pill)', val: '30px 10px 30px 10px' },
+          { label: 'border-radius: 24px (Modern Card Rounded)', val: '24px' }
+        ]
+      }
+    };
+
+    function switchCssCategory(cat) {
+      const propWrap = document.getElementById('p7PropWrap');
+      const customBox = document.getElementById('p7CustomBox');
+
+      if (cat === 'custom') {
+        propWrap.style.display = 'none';
+        customBox.style.display = 'flex';
+        document.getElementById('p7Title').value = 'Custom CSS Rule & Element Visualizer';
+      } else {
+        propWrap.style.display = 'flex';
+        customBox.style.display = 'none';
+        const data = CSS_DATA[cat];
+        document.getElementById('p7Title').value = data.title;
+        const select = document.getElementById('p7PropSelect');
+        select.innerHTML = '';
+        data.options.forEach(opt => {
+          const el = document.createElement('option');
+          el.value = opt.val;
+          el.innerText = opt.label;
+          select.appendChild(el);
+        });
+      }
+      renderCssVisualP7();
+    }
+
+    function renderCssVisualP7() {
+      const cat = document.getElementById('p7Category').value;
+      const title = document.getElementById('p7Title').value;
+      document.getElementById('p7TitleDisplay').innerText = title;
+
+      const tag = document.getElementById('p7CodeTag');
+      const mount = document.getElementById('p7VisualMount');
+
+      mount.innerHTML = '';
+      mount.style.cssText = 'width:100%; min-height:140px; display:flex; align-items:center; justify-content:center;';
+
+      if (cat === 'custom') {
+        const customCss = document.getElementById('p7CustomCss').value.trim();
+        const customHtml = document.getElementById('p7CustomHtml').value.trim();
+
+        tag.innerText = customCss || '/* Enter custom CSS property */';
+        
+        const customWrapper = document.createElement('div');
+        customWrapper.style.cssText = customCss;
+        customWrapper.innerHTML = customHtml;
+        mount.appendChild(customWrapper);
+      } else {
+        const val = document.getElementById('p7PropSelect').value;
+
+        if (cat === 'flex') {
+          tag.innerText = `display: flex; justify-content: ${val};`;
+          mount.style.justifyContent = val;
+          mount.innerHTML = `
+            <div style="background:#f59e0b; color:#0f172a; font-weight:800; width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(245,158,11,0.4);">1</div>
+            <div style="background:#38bdf8; color:#0f172a; font-weight:800; width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(56,189,248,0.4);">2</div>
+            <div style="background:#10b981; color:#0f172a; font-weight:800; width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(16,185,129,0.4);">3</div>
+          `;
+        } else if (cat === 'grid') {
+          tag.innerText = `display: grid; grid-template-columns: ${val}; gap: 12px;`;
+          mount.style.display = 'grid';
+          mount.style.gridTemplateColumns = val;
+          mount.style.gap = '12px';
+          mount.innerHTML = `
+            <div style="background:#f59e0b; color:#0f172a; font-weight:800; padding:16px; border-radius:12px; text-align:center;">Col 1</div>
+            <div style="background:#38bdf8; color:#0f172a; font-weight:800; padding:16px; border-radius:12px; text-align:center;">Col 2</div>
+            <div style="background:#10b981; color:#0f172a; font-weight:800; padding:16px; border-radius:12px; text-align:center;">Col 3</div>
+          `;
+        } else if (cat === 'shadow') {
+          tag.innerText = `box-shadow: ${val};`;
+          mount.innerHTML = `
+            <div style="width:140px; height:80px; background:#1e1b4b; border:1px solid #818cf8; border-radius:16px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; box-shadow:${val};">Glowing Card</div>
+          `;
+        } else if (cat === 'radius') {
+          tag.innerText = `border-radius: ${val};`;
+          mount.innerHTML = `
+            <div style="width:110px; height:110px; background:linear-gradient(135deg, #f59e0b, #d97706); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; border-radius:${val}; box-shadow:0 10px 25px rgba(217,119,6,0.4);">Shape</div>
+          `;
+        }
+      }
+    }
+
+    async function captureCssVisualP7() {
+      const frame = document.getElementById('p7ExportFrame');
+      const ratioKey = document.getElementById('p7Ratio').value;
+      await exportFrameWithAspect(frame, ratioKey, 'css_visual_cheatsheet.png');
+    }
+
+    // ==========================================
+    // PAGE 8: CODE TO CLASSIC PDF ENGINE
+    // ==========================================
+    function switchPdfEditor(sec, btn) {
+      document.querySelectorAll('.pdf-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('pdfInputHtmlWrap').style.display = sec === 'html' ? 'block' : 'none';
+      document.getElementById('pdfInputCssWrap').style.display = sec === 'css' ? 'block' : 'none';
+      document.getElementById('pdfInputJsWrap').style.display = sec === 'js' ? 'block' : 'none';
+      document.getElementById('pdfInputAllWrap').style.display = sec === 'all' ? 'block' : 'none';
+    }
+
+    function updatePdfPreview() {
+      const title = document.getElementById('pdfDocTitle').value.trim() || 'Code Guide';
+      const subtitle = document.getElementById('pdfDocSubtitle').value.trim() || 'Source Code & Implementation';
+      const brand = document.getElementById('pdfDocBrand').value.trim() || '@CodeWithPiyush';
+
+      document.getElementById('pdfViewTitle').innerText = title;
+      document.getElementById('pdfViewSubtitle').innerText = subtitle;
+      document.getElementById('pdfViewBrand').innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${brand}`;
+      document.getElementById('pdfFooterBrandText').innerText = `${brand} • Creator Code Studio Pro`;
+
+      const html = document.getElementById('pdfCodeHtml').value.trim();
+      const css = document.getElementById('pdfCodeCss').value.trim();
+      const js = document.getElementById('pdfCodeJs').value.trim();
+      const all = document.getElementById('pdfCodeAll').value.trim();
+
+      document.getElementById('pdfBlockHtml').innerText = html || '// No HTML Code provided';
+      document.getElementById('pdfBlockCss').innerText = css || '/* No CSS Code provided */';
+      document.getElementById('pdfBlockJs').innerText = js || '// No JS Code provided';
+      document.getElementById('pdfBlockAll').innerText = all || '// No Single-File Project provided';
+
+      // Toggle Section visibility if empty
+      document.getElementById('pdfSecHtml').style.display = html ? 'block' : 'none';
+      document.getElementById('pdfSecCss').style.display = css ? 'block' : 'none';
+      document.getElementById('pdfSecJs').style.display = js ? 'block' : 'none';
+      document.getElementById('pdfSecAll').style.display = all ? 'block' : 'none';
+    }
+
+    
+    
+    function downloadClassicPdf() {
+      updatePdfPreview();
+      const element = document.getElementById('pdfPrintDocument');
+      const title = document.getElementById('pdfDocTitle').value.trim() || 'code_guide';
+      const cleanFileName = title.toLowerCase().replace(/[^a-z0-9_-]/gi, '_') + '.pdf';
+
+      // Clone element with exact safe A4 printable width (680px) to prevent side cuts
+      const clone = element.cloneNode(true);
+      clone.style.boxShadow = 'none';
+      clone.style.borderRadius = '0';
+      clone.style.border = 'none';
+      clone.style.width = '680px';
+      clone.style.maxWidth = '680px';
+      clone.style.minWidth = '680px';
+      clone.style.boxSizing = 'border-box';
+      clone.style.margin = '0 auto';
+
+      // Container positioned offscreen with exact width matching clone
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.top = '-99999px';
+      container.style.left = '0';
+      container.style.width = '680px';
+      container.style.background = '#faf7f2';
+      container.style.boxSizing = 'border-box';
+      container.appendChild(clone);
+      document.body.appendChild(container);
+
+      // A4 portrait is 210mm wide. With 10mm margins on both sides, printable area is 190mm.
+      // 680px fits cleanly inside 190mm with zero side-cropping!
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: cleanFileName,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          scrollY: 0
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: {
+          mode: ['avoid-all', 'css', 'legacy'],
+          avoid: ['.pdf-header-hero', '.pdf-code-section', '.pdf-section-titlebar', '.pdf-footer-bar']
+        }
+      };
+
+      html2pdf().set(opt).from(clone).save().then(() => {
+        if (container.parentNode) document.body.removeChild(container);
+      }).catch((err) => {
+        console.error("PDF export error:", err);
+        if (container.parentNode) document.body.removeChild(container);
+      });
+    }
+
+    function downloadDataUrl(url, filename) {
+      const a = document.createElement('a');
+      a.download = filename;
+      a.href = url;
+      a.click();
+    }
+
+    window.onload = () => {
+      syncAllWatermarks('@CodeWithPiyush');
+      generateSlidesP1();
+      switchCssCategory('flex');
+      updatePdfPreview();
+    };
+  
+
+        // ==========================================
+    // PAGE 9: REAL NOTEBOOK HANDWRITTEN ENGINE (A4 LOCKED)
+    // ==========================================
+    function updateNotebookSizes() {
+      const fSize = document.getElementById('nbFontSize').value;
+      const lHeight = document.getElementById('nbLineHeight').value;
+
+      document.getElementById('nbSizeVal').innerText = fSize + 'px';
+      document.getElementById('nbLineVal').innerText = lHeight + 'px';
+
+      const body = document.getElementById('nbBody');
+      const textContent = document.getElementById('nbTextContent');
+      const paperStyle = document.getElementById('nbPaperStyle').value;
+
+      textContent.style.fontSize = fSize + 'px';
+      textContent.style.lineHeight = lHeight + 'px';
+
+      if (paperStyle === 'ruled') {
+        body.style.backgroundSize = `100% ${lHeight}px`;
+      } else if (paperStyle === 'grid') {
+        body.style.backgroundSize = `${lHeight}px ${lHeight}px`;
+      }
+
+      renderNotebook();
+    }
+
+    function updateNotebookPaperStyle() {
+      const style = document.getElementById('nbPaperStyle').value;
+      const body = document.getElementById('nbBody');
+      const lHeight = document.getElementById('nbLineHeight').value;
+      const m1 = document.getElementById('nbMargin1');
+      const m2 = document.getElementById('nbMargin2');
+
+      if (style === 'ruled') {
+        body.style.backgroundImage = 'repeating-linear-gradient(to bottom, #fdfcf7 0px, #fdfcf7 ' + (lHeight - 1) + 'px, #cbd5e1 ' + (lHeight - 1) + 'px, #cbd5e1 ' + lHeight + 'px)';
+        body.style.backgroundSize = `100% ${lHeight}px`;
+        m1.style.display = 'block';
+        m2.style.display = 'block';
+      } else if (style === 'plain') {
+        body.style.backgroundImage = 'none';
+        m1.style.display = 'none';
+        m2.style.display = 'none';
+      } else if (style === 'grid') {
+        body.style.backgroundImage = 'linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)';
+        body.style.backgroundSize = `${lHeight}px ${lHeight}px`;
+        m1.style.display = 'block';
+        m2.style.display = 'none';
+      }
+    }
+
+    function insertNotebookTag(tag, color) {
+      const ta = document.getElementById('nbContent');
+      const start = ta.selectionStart;
+      const end = ta.selectionEnd;
+      const text = ta.value;
+
+      ta.value = text.substring(0, start) + '\n' + tag + text.substring(end);
+      ta.focus();
+      ta.selectionStart = ta.selectionEnd = start + tag.length + 1;
+      renderNotebook();
+    }
+
+    function renderNotebook() {
+      const font = document.getElementById('nbFontSelect').value;
+      const pageNo = document.getElementById('nbPageNo').value.trim() || 'Page: 01';
+      const dateVal = document.getElementById('nbDate').value.trim() || 'Date: 02/11/2026';
+      const rawText = document.getElementById('nbContent').value;
+      const fSize = document.getElementById('nbFontSize').value + 'px';
+      const lHeight = document.getElementById('nbLineHeight').value + 'px';
+
+      document.getElementById('nbViewPage').innerText = pageNo;
+      document.getElementById('nbViewDate').innerText = dateVal;
+
+      const textContainer = document.getElementById('nbTextContent');
+      textContainer.style.fontFamily = font;
+      textContainer.style.fontSize = fSize;
+      textContainer.style.lineHeight = lHeight;
+      textContainer.innerHTML = '';
+
+      const lines = rawText.split('\n');
+
+      lines.forEach(lineText => {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'notebook-line';
+        lineDiv.style.minHeight = lHeight;
+        lineDiv.style.lineHeight = lHeight;
+
+        const trimmed = lineText.trim();
+
+        // Ink Color Rules:
+        // 1. Red: Headings, Notes, Important points
+        if (trimmed.startsWith('#') || trimmed.toLowerCase().startsWith('note:') || trimmed.toLowerCase().startsWith('important:') || trimmed.toLowerCase().startsWith('heading:') || trimmed.startsWith('*')) {
+          lineDiv.className += ' ink-red';
+          lineDiv.innerText = lineText.replace(/^[#*]\s*/, '');
+        }
+        // 2. Black: Questions (starts with Q, Q:, Q1., Question:)
+        else if (trimmed.toLowerCase().startsWith('q:') || trimmed.toLowerCase().startsWith('q.') || trimmed.toLowerCase().startsWith('question:') || /^q\d+[.:]/i.test(trimmed)) {
+          lineDiv.className += ' ink-black';
+          lineDiv.innerText = lineText;
+        }
+        // 3. Blue: Answers (starts with Ans:, A:, Answer:)
+        else if (trimmed.toLowerCase().startsWith('ans:') || trimmed.toLowerCase().startsWith('a:') || trimmed.toLowerCase().startsWith('answer:')) {
+          lineDiv.className += ' ink-blue';
+          lineDiv.innerText = lineText;
+        }
+        // 4. Default: Blue ink for general content
+        else {
+          lineDiv.className += ' ink-blue';
+          lineDiv.innerText = lineText || ' '; // Keep empty space to maintain ruled line alignment
+        }
+
+        textContainer.appendChild(lineDiv);
+      });
+    }
+
+    async function downloadNotebookImage() {
+      // Wait for all 14 handwriting & cursive fonts to be 100% decoded before rendering
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+      const sheet = document.getElementById('nbPaperSheet');
+      const canvas = await html2canvas(sheet, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#fdfbf7',
+        logging: false,
+        width: 794,
+        height: 1123
+      });
+      downloadDataUrl(canvas.toDataURL('image/png', 1.0), 'a4_handwritten_notebook_page.png');
+    }
+
+    async function downloadNotebookPdf() {
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+      const sheet = document.getElementById('nbPaperSheet');
+      const opt = {
+        margin: [0, 0, 0, 0], // Full bleed A4 sheet!
+        filename: 'a4_handwritten_notes.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false, width: 794, height: 1123 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(sheet).save();
+    }
+</script>
+</body>
+</html>
